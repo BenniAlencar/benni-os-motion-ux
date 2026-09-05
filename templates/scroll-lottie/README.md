@@ -1,0 +1,1 @@
+Template de animação dotLottie controlada pelo scroll.

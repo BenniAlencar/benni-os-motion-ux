@@ -1,0 +1,1 @@
+Template de botão Rive com máquina de estados.

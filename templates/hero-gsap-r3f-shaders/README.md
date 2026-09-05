@@ -1,0 +1,1 @@
+Template de hero 3D com GSAP, R3F e shader customizado.

@@ -1,0 +1,1 @@
+Checklist de performance, acessibilidade, motion, 3D e fallback de movimento reduzido.

@@ -1,0 +1,1 @@
+Profile v1.0: governança, arquitetura de cinco camadas, stack e QA para motion design, sites, interfaces e UI/UX.
