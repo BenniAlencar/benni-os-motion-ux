@@ -1,226 +1,180 @@
-# 🎬 Benni OS Motion/UX
+<!--
+BENNI OS MOTION/UX â€” README VISUAL STANDARD
 
-> **Sistema Paralelo de Motion Design, Criaçª£o de Sites, Interfaces e UI/UX**
+BANNER 3D:
+1. Crie/exporte um banner 3D exclusivo para este repositÃ³rio.
+2. DimensÃ£o recomendada: 1600 x 560 px (proporÃ§Ã£o aproximada de 20:7).
+3. Formatos: AVIF ou WebP estÃ¡tico; GIF/WebP animado apenas se for leve.
+4. Salve como: assets/benni-os-motion-ux-banner.webp
+5. Substitua o caminho abaixo caso hospede o banner em outro local.
 
-[![Status](https://img.shields.io/badge/status-proposed-blue)](https://github.com/benni-os/benni-os-motion-ux)
-[![VersÌ£o](https://img.shields.io/badge/versÌ£o-10.0.0-orange)](https://github.com/benni-os/benni-os-motion-ux)
-[![Stack](https://img.shields.io/badge/stack-GSAP%20%7C%20R3F%20%7C%20Shaders-green)](https://github.com/benni-os/benni-os-motion-ux)
-[![License](https://img.shields.io/badge/license-MIT-lightgrey)](https://github.com/benni-os/benni-os-motion-ux)
+MOVIMENTO DE TEXTO:
+README do GitHub nÃ£o executa JavaScript/CSS arbitrÃ¡rio. Portanto, o efeito de tipografia
+surgindo/digitando deve ser entregue por um banner animado, GIF/WebP/APNG, SVG animado
+compatÃ­vel com GitHub ou por uma pÃ¡gina de documentaÃ§Ã£o hospedada (GitHub Pages/Vercel).
+-->
 
----
+<p align="center">
+  <img src="./assets/benni-os-motion-ux-banner.webp" alt="BENNI OS MOTION/UX â€” Motion Design, Sites, Interfaces e UI/UX" width="100%" />
+</p>
 
-## Ìndice
+<p align="center">
+  <a href="#estado"><img src="https://img.shields.io/badge/STATUS-PROPOSED-00C853?style=for-the-badge&labelColor=161616" alt="Status proposed" /></a>
+  <a href="#sistema-em-camadas"><img src="https://img.shields.io/badge/LAYERS-05-0066FF?style=for-the-badge&labelColor=161616" alt="5 layers" /></a>
+  <a href="#stack"><img src="https://img.shields.io/badge/STACK-GSAP%20%7C%20R3F%20%7C%20SHADERS-FF6D00?style=for-the-badge&labelColor=161616" alt="Stack" /></a>
+  <a href="#gates-de-qualidade"><img src="https://img.shields.io/badge/MOTION%20GATE-REQUIRED-FF007A?style=for-the-badge&labelColor=161616" alt="Motion gate required" /></a>
+</p>
 
-- [VisÌ£o Geral](#visÌ£o-geral)
-- [Arquitetura](#arquitetura)
-- [Stack Oficial](#stack-oficial)
-- [Estrutura](#estrutura)
-- [Quick Start](#quick-start)
-- [Templates](#templates)
-- [Componentes](#componentes)
-- [QA](#qa)
-- [ReferÍ¬ncias](#referÍ¬ncias)
-- [Roadmap](#roadmap)
-
----
-
-## VisÌ£o Geral
-
-**Benni OS Motion/UX** e um sistema operacional de motion design focado em criar experiÍ¬ncias visuais premiadas (Awwwards, Site of the Day) atravÍ©s de **motion com propÍ³sito**.
-
-### PrincÌªpios
-
-1. **Motion com propÍ³sito** - Cada animaÍ§Ã£o guia, informa, emociona ou converte
-2. **Performance e feature** - 60fps, bundle <200KB, LCP <2.5s, CLS <0.1
-3. **Acessibilidade visual** - `prefers-reduced-motion`, contraste WCAG AA, foco visÌªvel
-4. **Storytelling imersivo** - Scroll como narrativa, 3D como emoÍ§Ã£o, micro-interaÍ§Ãµes como feedback
-5. **Stack moderno** - GSAP, R3F, Shaders, Spline, Rive, Lottie, Anime.js v4, Lenis
+<p align="center">
+  <code>MOTION â†’ INTERFACE â†’ SPATIAL â†’ EVIDENCE â†’ FALLBACK</code>
+</p>
 
 ---
 
-## Arquitetura
+# BENNI OS MOTION/UX
 
-### 5 Camadas de Motion
+> Sistema paralelo para motion design, criaÃ§Ã£o de sites, interfaces e UI/UX.
 
-```
-LAYER 5: STORYTELLING (Scroll + 3D + DOM)
-├── GSAP ScrollTrigger + R3F ScrollControls
-├── Theatre.js timeline + Shaders custom
-└── Spline 3D interativo + Fisica Rapier
+> **Motion tem intenÃ§Ã£o. 3D tem funÃ§Ã£o. Performance Ã© estÃ©tica.**
 
-LAYER 4: MICRO-INTERAÍ§ÍµES (UI/UX)
-├── Rive (state machines, hover, click)
-├── Lottie/dotLottie (loading, success)
-└── Anime.js v4 (animaÍ§Ãµes rÍ¡pidas, 9KB)
+O Benni OS Motion/UX organiza experiÃªncias visuais em uma arquitetura progressiva: primeiro conteÃºdo e acessibilidade; depois movimento, profundidade e interaÃ§Ã£o; por Ãºltimo, efeitos GPU quando a capacidade do dispositivo permite. Nenhuma experiÃªncia pode depender exclusivamente de WebGL, Ã¡udio, cÃ¢mera, mouse ou hardware de alto desempenho.
 
-LAYER 3: SCROLL & PARALLAX
-├── Lenis (smooth scroll, 5KB)
-├── GSAP ScrollSmoother (parallax data-speed)
-└── Observer (wheel, touch, pointer)
+## Sinal do sistema
 
-LAYER 2: 3D & WEBGL
-├── Three.js / R3F / Drei
-├── Shaders custom (vertex, fragment, uniforms)
-└── Postprocessing (Bloom, Vignette, DOF)
+```text
+LOCAL-FIRST  Â·  PROGRESSIVE  Â·  ACCESSIBLE  Â·  MEASURABLE
 
-LAYER 1: CORE (DOM + CSS)
-├── Motion One (layout animations, React)
-├── CSS transforms, will-change, contain
-└── FLIP (First Last Invert Play)
+SCROLL  â†’  MOTION  â†’  SPATIAL  â†’  RESPONSE  â†’  EVIDENCE
 ```
 
----
+| Propriedade | Compromisso |
+| --- | --- |
+| **Motion** | Orientar, informar, emocionar ou converter â€” nunca decorar sem propÃ³sito |
+| **Performance** | Meta de 60 fps; carga progressiva; orÃ§amento mensurÃ¡vel por efeito |
+| **Acessibilidade** | Teclado, foco, contraste, texto equivalente e `prefers-reduced-motion` |
+| **Spatial** | 3D como luz, profundidade e narrativa; nÃ£o como poluiÃ§Ã£o visual |
+| **Fallback** | HTML/CSS â†’ Canvas 2D â†’ WebGL2 â†’ WebGPU, sempre com equivalente Ãºtil |
 
-## Stack Oficial
+## Sistema em camadas
 
-| Categoria | Tecnologias |
-|-----------|-------------|
-| **Framework** | Next.js 14+ (App Router) ou Vite |
-| **Language** | TypeScript 5+ |
-| **Styling** | Tailwind CSS 3+ |
-| **Motion Core** | GSAP 3.13 (ScrollTrigger, ScrollSmoother, Observer, Flip) |
-| **Smooth Scroll** | Lenis 1.0+ |
-| **3D** | Three.js r160 / R3F 8.15 / Drei 9.100 |
-| **Postprocessing** | @react-three/postprocessing 2.15 |
-| **Micro** | Rive, dotLottie |
-| **Animation Light** | Anime.js v4 (9KB) |
-| **Timeline** | Theatre.js |
-| **3D No-Code** | Spline |
-| **Physics** | Rapier |
-| **Audio** | Tone.js |
-| **2D WebGL** | PixiJS v8 |
-| **Future** | WebGPU (GPGPU, compute shaders) |
+```text
+â•”â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•—
+â•‘  05  RUNTIME                                                 â•‘
+â•‘      Rive Â· dotLottie Â· Rapier Â· Tone.js Â· PixiJS Â· WebGPU  â•‘
+â• â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•£
+â•‘  04  SPATIAL                                                 â•‘
+â•‘      Three.js Â· R3F Â· Drei Â· Spline Â· GLSL Â· WGSL           â•‘
+â• â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•£
+â•‘  03  MOTION                                                  â•‘
+â•‘      GSAP Â· Anime.js Â· Motion One Â· FLIP Â· Theatre.js       â•‘
+â• â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•£
+â•‘  02  SCROLL                                                  â•‘
+â•‘      Lenis Â· ScrollTrigger Â· ScrollSmoother Â· Observer      â•‘
+â• â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•£
+â•‘  01  CORE                                                    â•‘
+â•‘      DOM Â· CSS Â· TypeScript Â· Layout Â· Acessibilidade       â•‘
+â•šâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+```
 
----
+## PrincÃ­pios operacionais
+
+1. **Motion com propÃ³sito** â€” cada animaÃ§Ã£o precisa justificar a atenÃ§Ã£o e o custo.
+2. **Progressive enhancement** â€” o conteÃºdo funciona antes do efeito; o efeito melhora, nÃ£o bloqueia.
+3. **Luz antes de objeto** â€” aura, perspectiva, sombra e composiÃ§Ã£o tÃªm precedÃªncia sobre meshes decorativos.
+4. **Resposta humana** â€” velocity, idle, pointer e foco orientam a experiÃªncia sem exigir microfone, cÃ¢mera ou permissÃµes.
+5. **EvidÃªncia antes de claim** â€” nÃ£o declarar 60 fps, compatibilidade, conversÃ£o ou produÃ§Ã£o sem teste datado.
+
+## Stack
+
+| Ãrea | Ferramentas |
+| --- | --- |
+| AplicaÃ§Ã£o | Next.js, React, TypeScript, Tailwind CSS |
+| Scroll e motion | GSAP, ScrollTrigger, Lenis, Anime.js, Motion One |
+| 3D e spatial | Three.js, React Three Fiber, Drei, Spline |
+| GPU e shaders | GLSL, WGSL, WebGL2, WebGPU, Lygia |
+| InteraÃ§Ãµes | Rive, dotLottie, FLIP, Observer |
+| Runtime avanÃ§ado | Theatre.js, Rapier, Tone.js, PixiJS |
 
 ## Estrutura
 
-```
-benni-os-motion-ux/
-├── 00_PERFIL_MESTRE/
-│   └── BENNI_OS_MOTION_UX_MASTER_PROFILE.md
-├── 01_SKILLS_MOTION/ (20 skills)
-│   ├── SKILL_01_GSAP_SCROLLTRIGGER_MESTRE.md
-│   ├── SKILL_02_GSAP_SCROLLSMOOTHER_OBSERVER_FLIP.md
-│   └── ... (SKILL_03 a SKILL_20)
-├── 02_TEMPLATES_PREMIADOS/ (5 templates)
-│   ├── TEMPLATE_HALO_RESPIRACAO_SCROLL.md
-│   ├── TEMPLATE_LETHE_MEMORIA_APAGA.md
-│   └── ... (LUMEN, GSAP_R3F, SPLINE)
-├── 03_COMPONENTES_REUTILIZAVEIS/ (6 componentes)
-│   ├── Hero3D.md, ScrollLottie.md, RiveButton.md
-│   └── GridStagger.md, SmoothSection.md, ParallaxImage.md
-├── 04_CHECKLISTS/ (5 checklists)
-│   ├── PERFORMANCE, ACESSIBILIDADE, MOTION_DESIGN
-│   └── 3D_SHADERS, DEPLOY
-├── 05_WORKFLOWS/ (3 workflows)
-│   ├── BRIEFING_PRODUCAO, MOTION_PLAN, QA_DEPLOY
-├── 06_REFERENCIAS/ (3 docs)
-│   ├── STACK_OFICIAL_2026, DOCUMENTACAO_OFICIAL, INSPIRACAO_AWARDS
-├── 07_ARTE_SUPREMA/ (2 artefatos)
-│   ├── BENNI_OS_MOTION_UX_ARTE_SUPREMA_V10.md
-│   └── 200_PADROES_ARTE_SUPREMA_SEM_MIC.md
-└── 08_REFERENCIAS_AVANCADAS/ (artefatos locais)
-    ├── BENNI_MASTER_OS_V10_ARTE_SUPREMA_SEM_DEPENDENCIAS.txt
-    ├── CODIGOS_SECRETOS_DOMINAM_TUDO_V11.txt
-    └── ... (demais artefatos em progresso)
+```text
+00_PERFIL_MESTRE/             Perfil, contrato e governanÃ§a do sistema
+01_SKILLS_MOTION/             20 skills de motion, 3D e runtime
+02_TEMPLATES_PREMIADOS/       HALO Â· LETHE Â· LUMEN Â· GSAP/R3F Â· SPLINE
+03_COMPONENTES_REUTILIZAVEIS/ Hero3D Â· ScrollLottie Â· RiveButton Â· GridStagger
+04_CHECKLISTS/                Performance Â· Acessibilidade Â· Motion Â· 3D Â· Deploy
+05_WORKFLOWS/                 Briefing Â· Motion Plan Â· QA/Deploy
+06_REFERENCIAS/               Stack Â· Docs oficiais Â· InspiraÃ§Ã£o
+07_ARTE_SUPREMA/              Manifesto e 200 padrÃµes
+08_REFERENCIAS_AVANCADAS/     Materiais extensos de estudo e engenharia reversa
+assets/                       Banners, posters, GIFs e recursos visuais do README
 ```
 
----
+## Templates principais
 
-## Quick Start
+| Template | IntenÃ§Ã£o | Base |
+| --- | --- | --- |
+| **HALO** | Luz que respira com scroll, velocidade e idle | Lenis, shaders, Theatre.js |
+| **LETHE** | MemÃ³ria que se transforma e apaga progressivamente | ScrollTrigger, partÃ­culas |
+| **LUMEN** | Luz guiada pelo pointer e pelo foco do teclado | GLSL, pointer, acessibilidade |
+| **GSAP + R3F** | Hero espacial com shader, luz e Bloom controlados | GSAP, R3F, Drei |
+| **Spline Hero** | Cena 3D como enhancement progressivo | Spline Runtime |
+
+## Gates de qualidade
+
+```text
+[ CORE ] conteÃºdo sem bloqueio
+[ A11Y ] teclado Â· contraste Â· foco Â· reduced motion
+[ GPU  ] probe de WebGL/WebGPU + fallback equivalente
+[ PERF ] frame budget Â· memÃ³ria Â· bundle Â· mobile real
+[ QA   ] build Â· lint Â· browser matrix Â· deploy evidence
+```
+
+- [ ] `prefers-reduced-motion` possui equivalente estÃ¡tico ou de respiraÃ§Ã£o sem escala.
+- [ ] NavegaÃ§Ã£o por teclado, `:focus-visible` e semÃ¢ntica foram testadas.
+- [ ] Todo WebGL/WebGPU tem fallback Ãºtil â€” nunca tela preta.
+- [ ] Shaders, texturas e geometria obedecem ao orÃ§amento de memÃ³ria.
+- [ ] Efeitos foram medidos em dispositivo mÃ³vel real.
+- [ ] Build, lint e deploy foram verificados no ambiente-alvo.
+
+## InÃ­cio rÃ¡pido
 
 ```bash
-# Clone
-git clone https://github.com/benni-os/benni-os-motion-ux.git
+git clone https://github.com/BenniAlencar/benni-os-motion-ux.git
 cd benni-os-motion-ux
-
-# Install
 npm install
-
-# Dev
 npm run dev
+```
 
-# Build
-npm run build
+Os templates sÃ£o referÃªncias independentes. Instale apenas as dependÃªncias necessÃ¡rias para o template escolhido e substitua URLs, `.riv`, `.lottie`, modelos, imagens e assets de exemplo antes de publicar.
+
+## DocumentaÃ§Ã£o
+
+- [Perfil mestre](./00_PERFIL_MESTRE/BENNI_OS_MOTION_UX_MASTER_PROFILE.md)
+- [Skills de motion](./01_SKILLS_MOTION/)
+- [Templates premiados](./02_TEMPLATES_PREMIADOS/)
+- [Componentes reutilizÃ¡veis](./03_COMPONENTES_REUTILIZAVEIS/)
+- [Checklists](./04_CHECKLISTS/)
+- [Workflows](./05_WORKFLOWS/)
+- [ReferÃªncias avanÃ§adas](./08_REFERENCIAS_AVANCADAS/)
+
+## Estado
+
+```yaml
+status: proposed
+owner: Benni Alencar
+scope: motion-design-sites-interfaces-ui-ux
+admission: draft
+approval: review_required
+runtime_evidence: unknown
+production_evidence: unknown
+rollback_ref: previous README commit
 ```
 
 ---
 
-## Templates
-
-| Template | DescriÍ§Ã£o | Stack |
-|----------|------------|-------|
-| **HALO** | RespiraÍ§Ã£o via scroll + idle | Lenis, Theatre.js, Lygia |
-| **LETHE** | MemÍ³ria que apaga com scroll | GPGPU, ScrollSmoother |
-| **LUMEN** | Luz que segue pointer + focus | OGL, Shader, GSAP |
-| **GSAP+R3F** | Hero 3D com shader + Bloom | GSAP, R3F, Postprocessing |
-| **SPLINE** | Hero 3D no-code | Spline Runtime |
-
----
-
-## Componentes
-
-- **Hero3D**: Canvas R3F fixo, ScrollControls, shader custom
-- **ScrollLottie**: DotLottie controlado por ScrollTrigger
-- **RiveButton**: BotÍ£o com state machine (hover, click)
-- **GridStagger**: Grid 4x4 com Anime.js stagger
-- **SmoothSection**: SecÍ£o com Lenis + reveal GSAP
-- **ParallaxImage**: Imagem com data-speed, data-lag
-
----
-
-## QA
-
-### Performance
-- [ ] Bundle <200KB (gzipped)
-- [ ] LCP <2.5s, FID <100ms, CLS <0.1
-- [ ] 60fps em mobile
-- [ ] Lighthouse >90
-
-### Acessibilidade
-- [ ] Contraste WCAG AA
-- [ ] Foco visÌªvel (`:focus-visible`)
-- [ ] `prefers-reduced-motion` respeitado
-- [ ] ARIA labels em botoes, links, forms
-
-### Motion
-- [ ] Cada animaÍ§Ã£o tem propÍ³sito
-- [ ] DuraÍ§Ãµes consistentes (200-600ms micro, 800-1500ms macro)
-- [ ] Easings naturais (power2.out, power4.out, outBack)
-
----
-
-## ReferÍ¬ncias
-
-- **Docs**: [GSAP](https://gsap.com/docs/v3/), [R3F](https://docs.pmnd.rs/react-three-fiber/), [Spline](https://docs.spline.design/)
-- **Inspirao**: [Awwwards](https://awwwards.com), [Site of the Day](https://siteoftheday.com), [Godly](https://godly.website)
-- **Comunidade**: Discord R3F, GSAP, Spline, Rive
-
----
-
-## Roadmap
-
-### Q1 2026
-- [ ] Biblioteca de componentes reutilizÌ¡veis
-- [ ] 5 templates premiados em produÍ§Ã£o
-- [ ] Documentao de shaders (GLSL + WGSL)
-
-### Q2 2026
-- [ ] WebGPU em produÍ§Ã£o (compute shaders)
-- [ ] GPGPU para partÌªculas, fluidos
-- [ ] Audio reativo com Tone.js
-
-### Q3 2026
-- [ ] IA generativa para motion
-- [ ] A/B testing de motion (conversÌ£o)
-- [ ] i18n (PT-BR, EN, ES)
-
-### Q4 2026
-- [ ] AR/VR motion (WebXR)
-- [ ] Spatial computing (Vision Pro)
-- [ ] Benchmark open-source
-
----
-
-**Criado por Benni Alencar** - MaracanÌ£, ParÌ¡, BR - 2026
+<p align="center">
+  <strong>BENNI OS MOTION/UX</strong><br />
+  Motion with intent. Spatial with restraint. Evidence before claim.<br />
+  MaracanÃ£, ParÃ¡, Brasil.
+</p>
