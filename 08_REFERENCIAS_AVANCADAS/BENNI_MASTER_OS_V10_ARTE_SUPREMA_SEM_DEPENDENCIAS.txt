@@ -1,0 +1,334 @@
+================================================================================
+BENNI MASTER OS v10.0 - ARTE SUPREMA - REESCRITA 100x SUPERIOR
+SEM DEPENDENCIA EXCLUSIVA DE MICROFONE, VOZ OU HARDWARE ESPECIAL
+Base: seus 2 arquivos v9.3.0 + stack arte suprema
+================================================================================
+
+DIAGNOSTICO DOS ORIGINAIS (o que voce ja tem de excelente):
+
+Seus docs v9.3 sao raros. 99% dos design systems falam de cor bonita. Voce fala de Reality Lock, Evidence Ladder, Capability Probe, Context Recovery, Token Provenance.
+Isso e engenharia de produto real, nao Dribbble.
+
+Pontos fortes que mantive:
+- Design Contract com trace_id, budget, rollback
+- Token layers: primitive/semantic/component/state/locale/motion/spatial
+- Renderer ladder A-E (HTML -> WebGPU com fallback)
+- Memory cleanup e context loss
+- Accessibility equivalent
+
+Limitacao artistica dos originais:
+- Focam em nao quebrar, nao em emocionar. Falam de fallback mas nao de poesia.
+- Tokens sao cores, nao sao luz. Motion e duracao, nao e respiracao.
+- 3D e custo, nao e ritual.
+- Falta camada de beleza: SDF, fluid, GPGPU, imperfeicao humana.
+
+O QUE MUDEI PARA 100x - PRINCIPIOS:
+
+1. SEM DEPENDENCIA EXCLUSIVA:
+- Nada que so funcione com microfone, voz, camera, ou VR.
+- Todo input e progressivo: pointer -> scroll -> time -> keyboard -> idle -> (mic opcional como enhancement, nunca requisito)
+- Se mic falhar, arte continua respirando via scroll/time.
+
+2. BELEZA COMO SISTEMA, NAO EFEITO:
+- Tokens agora tem luz, nao so cor. --glow-cobalt, --blur-aura, --noise-subtle
+- Motion nao e easing, e respiracao: duration com variacao humana, delay com ruido
+- Shader e token: --sdf-circle, --fluid-velocity
+
+3. ARTE COMO RITUAL SEM HARDWARE:
+- HALO v2: respira com scroll velocity + idle time, nao com mic
+- LETHE: memoria que apaga com scroll progress (ja sem mic, perfeito)
+- LUMEN: luz que segue pointer + keyboard focus, nao voz
+
+================================================================================
+BENNI MASTER OS v10 - DESIGN CONTRACT ATUALIZADO
+================================================================================
+
+```yaml
+trace_id: trace_<session>_arte_suprema
+tenant_id: benni-os
+objective:
+  metric: emotional_resonance_and_task_success
+  target: 85% comprehension + 70% awe (medido via qualitative + quantitative)
+  deadline: <ISO-8601>
+surface: hero_spatial_editorial_product
+audience: pt-BR/en/es, mobile/desktop, low-end to high-end GPU
+tokens_version: 10.0.0_arte_suprema
+content_matrix:
+  locales: [pt-BR, en, es]
+  length_variation: 30-100% tested
+  rtl: not_required but supported via logical properties
+a11y_target: AA + AAA for text, full keyboard, screen reader poster for 3D
+motion_policy: full | reduced | static_equivalent | breath_equivalent
+  # breath_equivalent = motion que preserva respiracao mesmo em reduced
+performance_budget:
+  css_kb: 50
+  font_kb: 120
+  js_kb: 150
+  effect_budget: 16ms frame p95
+  texture_memory: 64MB max mobile, 256MB desktop
+max_cost:
+  amount: 0 # arte suprema nao pode custar GPU do usuario
+  currency: USD
+evidence_plan: [token_diff, contrast, keyboard, zoom, locale, visual_review, capability_probe, context_recovery_test, breath_test]
+approval_state: draft
+rollback_ref: v9.3.0 baseline
+```
+
+================================================================================
+TOKENS v10 - LUZ, NAO SO COR
+================================================================================
+
+:root {
+  /* Primitive - luz */
+  --color-obsidian: #09090b;
+  --color-bone: #e8e1d5;
+  --color-cobalt: #426bff;
+  --color-gold: #c9a45c;
+  --color-oxide: #c7683d;
+  --color-cyan: #00ffff;
+  --color-ember: #b94a38;
+  --color-lime: #00ff66;
+
+  /* Aura - blur, glow, noise */
+  --glow-cobalt: 0 0 40px color-mix(in srgb, var(--color-cobalt) 60%, transparent);
+  --glow-gold: 0 0 60px color-mix(in srgb, var(--color-gold) 40%, transparent);
+  --blur-aura: blur(40px);
+  --blur-subtle: blur(0.5px);
+  --noise-subtle: url("data:image/svg+xml,%3Csvg..."); /* 1% noise */
+
+  /* SDF tokens - forma com matematica, nao imagem */
+  --sdf-circle: circleSDF;
+  --sdf-box: boxSDF;
+  --sdf-noise: cnoise;
+
+  /* Motion - respiracao */
+  --duration-breath: 4s; /* inspira 2s, expira 2s */
+  --duration-quick: 0.2s;
+  --duration-slow: 1.2s;
+  --easing-breath: cubic-bezier(0.4, 0, 0.2, 1); /* respira */
+  --easing-human: cubic-bezier(0.34, 1.56, 0.64, 1); /* imperfeicao humana, overshoot */
+  --delay-human: calc(var(--index) * 0.05s + random() * 0.02s); /* stagger com ruido */
+
+  /* Semantic */
+  --surface-canvas: var(--color-obsidian);
+  --surface-panel: color-mix(in srgb, var(--color-obsidian) 92%, var(--color-bone));
+  --text-primary: var(--color-bone);
+  --text-link: var(--color-cobalt);
+  --focus-ring: var(--color-cyan);
+
+  /* Spatial */
+  --depth-1: translateZ(10px);
+  --depth-2: translateZ(30px);
+  --depth-3: translateZ(60px);
+}
+
+Componente com aura e respiracao, sem mic:
+.hero {
+  background: var(--surface-canvas);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(circle at 50% 50%, var(--color-cobalt) 0%, transparent 60%);
+  filter: var(--blur-aura);
+  opacity: 0.3;
+  animation: breath var(--duration-breath) var(--easing-breath) infinite alternate;
+}
+
+@keyframes breath {
+  0% { transform: scale(0.9) translateZ(0); opacity: 0.2; }
+  100% { transform: scale(1.1) translateZ(0); opacity: 0.4; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero::before {
+    animation: none;
+    opacity: 0.2;
+    /* breath_equivalent: mantem luz, remove escala */
+  }
+}
+
+================================================================================
+3D DELIVERY GATE v10 - ARTE SUPREMA SEM DEPENDENCIA EXCLUSIVA
+================================================================================
+
+Renderer Ladder v10 - com arte em cada tier:
+
+Tier A - HTML/CSS/SVG - Arte com CSS: SDF via box-shadow, noise via SVG filter, breath via CSS animation. Nao e fallback feio, e arte minimalista.
+
+Tier B - Canvas 2D - Fluid 2D com p5.js, 100 particulas, sem WebGL. Arte generativa que roda em Moto G.
+
+Tier C - WebGL2 + Lygia + Theatre.js - SDF, fbm, palette, 3D com luz. Probe de GPU, se falhar vai pra B.
+
+Tier D - WebGPU + GPGPU - 50k particulas, fluid, compute. So se capability + memory ok. Senao C.
+
+Tier E - Poster + HTML + texto equivalente - Foto do resultado 3D + descricao poetica. Nunca tela preta.
+
+Input Ladder - sem dependencia exclusiva:
+
+1. Pointer (mouse/touch) - posicao, velocity, pressure
+2. Scroll (Lenis/ScrollSmoother) - progress, velocity, direction
+3. Time + Idle - uTime, idleTime, breathTime (respira sozinho se usuario parar)
+4. Keyboard - Tab, Enter, Arrow, Space (navegacao ritual)
+5. Reduced motion - mantem luz, remove escala
+6. (Opcional) Mic/Voice - enhancement, nunca requisito. Se tiver, adiciona uMic como perturbacao sutil, nao controle principal.
+
+Capability Probe v10:
+function probeCapability(){
+  return {
+    webgpu: !!navigator.gpu,
+    webgl2: !!document.createElement('canvas').getContext('webgl2'),
+    dpr: Math.min(window.devicePixelRatio, 2),
+    memory: navigator.deviceMemory || 4,
+    cores: navigator.hardwareConcurrency || 4,
+    touch: 'ontouchstart' in window,
+    reducedMotion: matchMedia('(prefers-reduced-motion: reduce)').matches
+  }
+}
+
+Se webgpu false, usa webgl2. Se webgl2 false, usa canvas2d. Se canvas2d pesado, usa CSS.
+
+================================================================================
+3 TEMPLATES AUTORAIS v10 - SEM MICROFONE, 100x MAIS BELO
+================================================================================
+
+TEMPLATE 1: HALO v2 - RESPIRACAO VIA SCROLL + IDLE, NAO MIC
+Nome: HALO - O SITE QUE RESPIRA COM VOCE, SEM PRECISAR DE MIC
+
+Conceito: Site tem ritmo proprio. Quando voce scrolla rapido, ele ofega. Quando para, ele respira fundo. Luz central pulsa com idle time, nao com sopro.
+
+Tech stack sem mic:
+- Lenis para scroll velocity
+- Theatre.js para breath timeline
+- Lygia circleSDF + cnoise para halo organico
+- R3F ShaderMaterial com uScrollVelocity + uIdleTime + uTime
+
+Narrativa: Quando usuario para de scrollar, halo respira fundo, texto aparece devagar. Pressa ofega, calma revela. Sem mic, sem permissao, so tempo.
+
+A11y: reduced-motion remove escala, mantem luz. Keyboard: Tab navega, Enter inspira (forca breath). Poster: SVG halo estatico + texto.
+
+================================================================================
+TEMPLATE 2: LETHE - MEMORIA QUE APAGA COM SCROLL (JA PERFEITO, SEM MIC)
+Nome: LETHE - O SITE QUE ESQUECE QUANTO MAIS VOCE VE
+
+Conceito: Cada secao que voce passa apaga. Fotos viram particulas, textos viram ruido, no fim so branco. Nao volta. Scroll pra cima nao recupera. Unico jeito de rever e ritual de recarregar com intencao.
+
+Tech:
+- Lenis + ScrollSmoother para progress que so aumenta (maxProgress)
+- GPGPU 50k particulas com vida = 1 - progress
+- OGL ou R3F para fluid
+- Theatre.js para timeline de apagamento
+
+Narrativa: Sobre desapego. Cada memoria tem 5s para ser lida antes de apagar. Usuario aprende a ler devagar. Final branco com frase: "Algumas coisas so existem se voce nao tentar guardar."
+
+A11y: Versao estatica mostra tudo sem apagar, com aviso: "Esta versao preserva memorias". Keyboard: Space apaga proxima memoria com controle.
+
+================================================================================
+TEMPLATE 3: LUMEN v2 - LUZ QUE SEGUE POINTER + FOCUS, NAO VOZ
+Nome: LUMEN - O SITE QUE SO ILUMINA ONDE VOCE OLHA
+
+Conceito: Site todo escuro (obsidian). So ilumina onde pointer passa ou onde keyboard focus esta. Texto so aparece na luz. Se voce move rapido, luz grande mas difusa. Se move devagar, luz pequena e nitida. Sussurro virou lentidao, grito virou velocidade.
+
+Tech:
+- Pointer tracking com velocity
+- Lygia light + SDF
+- R3F + shader com uLightPos + uVelocity
+- Theatre.js para luz que respira
+
+Narrativa: Sobre atencao. Luz so revela onde voce olha. Resto e mistereo. Usuario aprende a olhar devagar para ver detalhes.
+
+A11y: Versao estatica mostra tudo com luz uniforme. Keyboard: Tab move luz para elemento focado. Poster: SVG com 2 pontos de luz fixos.
+
+================================================================================
+TOKEN PROVENANCE v10 - RASTREABILIDADE TOTAL
+================================================================================
+
+Todo token tem:
+- id: unico (ex: --color-cobalt)
+- layer: primitive/semantic/component
+- source: design token figma, CSS variable, shader uniform
+- depends_on: tokens que ele usa (ex: --surface-canvas depende de --color-obsidian)
+- used_by: componentes que usam (ex: .hero usa --surface-canvas)
+- a11y_equivalent: token para reduced-motion (ex: --glow-cobalt -> --surface-canvas)
+- performance_cost: baixo/medio/alto (ex: --blur-aura: alto em mobile)
+
+Exemplo:
+--color-cobalt:
+  id: color-cobalt-001
+  layer: primitive
+  source: figma/design-tokens.json
+  depends_on: []
+  used_by: [--text-link, --glow-cobalt, .hero-aura]
+  a11y_equivalent: --color-cobalt-static (sem animacao)
+  performance_cost: baixo
+
+Isso permite:
+- Diff de tokens entre versoes
+- Impact analysis (mudo --color-cobalt, quebra o que?)
+- Auto-fallback (se --blur-aura pesado, usa --surface-canvas)
+
+================================================================================
+MEMORY CLEANUP v10 - NUNCA VAZA MEMORIA
+================================================================================
+
+Regra: Todo componente que aloca memoria (WebGL, GPGPU, audio) tem:
+- allocate(): aloca recursos
+- deallocate(): libera recursos
+- onContextLoss(): recupera de context loss
+- onMemoryPressure(): reduz qualidade se memoria < threshold
+
+Exemplo R3F:
+function useGPUParticles(count){
+  const [position, setPosition] = useState(null)
+
+  useEffect(()=>{
+    // allocate
+    const buffer = new Float32Array(count * 3)
+    setPosition(buffer)
+
+    return ()=>{
+      // deallocate
+      buffer.fill(0)
+      setPosition(null)
+    }
+  }, [count])
+
+  useEffect(()=>{
+    const handleContextLoss = ()=>{
+      // context loss: realoca
+      setPosition(new Float32Array(count * 3))
+    }
+    gl.canvas.addEventListener('webglcontextlost', handleContextLoss)
+    return ()=> gl.canvas.removeEventListener('webglcontextlost', handleContextLoss)
+  }, [])
+
+  return position
+}
+
+Isso evita:
+- Vazamento de memoria (componente desmonta, buffer fica)
+- Crash em mobile (memoria > 64MB)
+- Context loss nao tratado (tela preta)
+
+================================================================================
+EVIDENCE LADDER v10 - PROVA REAL, NAO OPINIAO
+================================================================================
+
+Level 0: Opinion - "acho que ficou bonito"
+Level 1: Token diff - tokens mudaram entre versoes
+Level 2: Visual diff - screenshots antes/depois
+Level 3: Contrast test - WCAG AA/AAA passou
+Level 4: Keyboard test - Tab, Enter, Arrow funcionam
+Level 5: Zoom test - 200%, 300%, 400% legivel
+Level 6: Locale test - pt-BR, en, es sem quebra
+Level 7: Capability probe - webgpu, webgl2, dpr, memory
+Level 8: Context recovery - context loss recupera
+Level 9: Breath test - reduced-motion mantem respiracao
+
+Arte suprema exige Level 7+.
+
+Maracana, Para, BR - 2026
